@@ -7,7 +7,7 @@ from os.path import isfile, join
 from index_to_letter import index_to_letter
 
 DEVICE='cuda' if torch.cuda.is_available() else 'cpu'
-PATH_WEIGHTS = "./weights/best_weights_11.pt"
+PATH_WEIGHTS = "./weights/best_weights_10.pt"
 PATH_TEST = "./test"
 
 asl_model = torch.load(PATH_WEIGHTS)
