@@ -2,10 +2,10 @@ from torchvision import transforms
 import torch
 import cv2
 
-from index_to_letter import index
+from index_to_letter import index_to_letter
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-PATH_WEIGHTS = "./weights/best_weights_11.pt"
+PATH_WEIGHTS = "./weights/best_weights_18.pt"
 PATH_TEST = "./test"
 
 # Cargar el modelo entrenado
@@ -51,7 +51,7 @@ while 1:
             face_section_tensor = transformations(face_section)
             face_section_tensor = torch.unsqueeze(face_section_tensor, 0)
             face_section_tensor = face_section_tensor.to(DEVICE)
-            print(face_section_tensor)
+            #print(face_section_tensor)
 
             # Realizar la predicción utilizando el modelo
             prediction = asl_model(face_section_tensor)
