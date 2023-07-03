@@ -1,4 +1,4 @@
-from model import ASL_Model
+from model import Model
 from dataset import trainloader, trainset, validloader
 import torch
 import numpy as np
@@ -43,11 +43,11 @@ def eval_fn(dataloader, model, criterion):
     total_loss += loss.item()
   return total_loss / len(dataloader)
 
-# Crear una instancia del modelo ASL_Model
-asl_model = ASL_Model(n_classes=len(trainset.class_to_idx)).to(DEVICE) 
+# Crear una instancia del modelo Model
+Model = Model(n_classes=len(trainset.class_to_idx)).to(DEVICE) 
 
 # Optimizador y función de pérdida
-optimizer = torch.optim.Adam(asl_model.parameters(), lr=LR)
+optimizer = torch.optim.Adam(Model.parameters(), lr=LR)
 criterion = torch.nn.CrossEntropyLoss()
 
 best_valid_loss = np.Inf
@@ -59,14 +59,14 @@ vector_epoch = []
 # Ciclo de entrenamiento
 for i in range(EPOCHS):
   # Entrenamiento
-  train_loss = train_fn(trainloader, asl_model, optimizer, criterion)
+  train_loss = train_fn(trainloader, Model, optimizer, criterion)
   
   # Evaluación en conjunto de validación
-  valid_loss = eval_fn(validloader, asl_model, criterion)
+  valid_loss = eval_fn(validloader, Model, criterion)
 
   if valid_loss < best_valid_loss:
     # Guardar los mejores pesos del modelo
-    torch.save(asl_model, f'./weights/best_weights_{EPOCHS}.pt')
+    torch.save(Model, f'./weights/best_weights_{EPOCHS}.pt')
     best_valid_loss = valid_loss
     print("SAVED_WEIGHTS_SUCCESS")
   

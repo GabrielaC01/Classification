@@ -2,7 +2,7 @@ from torchvision import transforms
 import torch
 import cv2
 
-from index_to_letter import index_to_letter
+from index_to_letter import index
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 PATH_WEIGHTS = "./weights/best_weights_11.pt"

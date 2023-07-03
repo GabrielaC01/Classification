@@ -7,12 +7,12 @@ from os.path import isfile, join
 from index_to_letter import index_to_letter
 
 DEVICE='cuda' if torch.cuda.is_available() else 'cpu'
-PATH_WEIGHTS = "./weights/best_weights_11.pt"
+PATH_WEIGHTS = "./weights/best_weights_1.pt"
 PATH_TEST = "./test"
 
-asl_model = torch.load(PATH_WEIGHTS)
-asl_model.to(DEVICE)
-asl_model.eval()
+model = torch.load(PATH_WEIGHTS)
+model.to(DEVICE)
+model.eval()
 
 min_w = 20
 min_h = 20
@@ -57,7 +57,7 @@ for f in onlyfiles:
                 face_section_tensor = torch.unsqueeze(face_section_tensor, 0)
                 face_section_tensor = face_section_tensor.to(DEVICE)
                 #print(face_section_tensor)
-                prediction = asl_model(face_section_tensor)
+                prediction = model(face_section_tensor)
                 index = torch.argmax(prediction).item()
                 j += 1
                 if index_to_letter[index] in f:

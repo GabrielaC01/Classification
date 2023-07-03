@@ -1,9 +1,9 @@
 import torch 
 from torch import nn 
 
-class ASL_Model(nn.Module):
+class Model(nn.Module):
   def __init__(self, n_classes):
-      super(ASL_Model, self).__init__()
+      super(Model, self).__init__()
 
       # Definición de la arquitectura del modelo
       self.feature_extractor = nn.Sequential(
