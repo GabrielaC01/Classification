@@ -10,7 +10,7 @@ DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 BATCH_SIZE = 16
 LR = 0.001
-EPOCHS = 11
+EPOCHS = 1
 
 # Función de entrenamiento
 def train_fn(dataloader, model, optimizer, criterion):

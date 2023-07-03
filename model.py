@@ -40,4 +40,16 @@ class ASL_Model(nn.Module):
 
   def forward(self, images):
     # Propagación hacia adelante del modelo
-    x = self.feature
+    x=self.feature_extractor(images) 
+
+    h=x.register_hook(self.activations_hook)
+    x=self.maxpool(x)
+    x=self.classifier(x)
+
+    return x
+
+  def get_activation_gradients(self): #a1, a2, a3, ... ak
+    return self.gradient
+
+  def get_activation(self, x): #A1, A2, A3, ... Ak
+    return self.feature_extractor(x)
