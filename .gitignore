@@ -1,0 +1,5 @@
+/processed
+/validation
+/test/*.jpg
+/weights/*.pt
+/__pycache__
