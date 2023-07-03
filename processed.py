@@ -10,8 +10,12 @@ min_h = 20
 # Cargar archivo clasificador
 face_cascade = cv2.CascadeClassifier("./haarcascade_frontalface_default.xml")
 
-# obtener una lista de las subcarpetas en data [A, B, C....]
+# obtener una lista de las subcarpetas en data 
 subfolders = os.listdir(DATA)
+
+# Crear la carpeta "processed" si no existe
+if not os.path.exists(DATASET_DIR):
+    os.mkdir(DATASET_DIR)
 
 # creamos las subcarpetas halladas, en la carpeta processed
 for sf in subfolders:
